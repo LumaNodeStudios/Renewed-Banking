@@ -3,10 +3,15 @@
  
  [Renewed Discord](https://discord.gg/P3RMrbwA8n)
 
+# IMPORTANT
+* This repository is a **redesign** of Renewed-Banking and is NOT the original script.
+* All credits goes to Renewed-Scripts
+* Original: [Renewed-Scripts/Renewed-Banking](https://github.com/Renewed-Scripts/Renewed-Banking)
+
 # Project Description
-This resource is created & maintained by uShifty#1733 and was not a fork of any of the other banking resources.
+This resource is a modern redesign of the banking system.
 The legacy UI was heavily inspired by No Pixel 3.0
-The 2.0 UI was redesigned by [qwadebot](https://github.com/qw-scripts) Edited by [uShifty](https://github.com/uShifty)
+The 2.0 UI was redesigned by [qwadebot](https://github.com/qw-scripts) and edited by [uShifty](https://github.com/uShifty)
 
 
 # Dependencies
