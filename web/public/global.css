@@ -1,13 +1,20 @@
 :root {
-    --clr-primary: #393A45;
-    --clr-primary-light: #393A45;
-    --clr-primary-dark: transparant;
+    --clr-primary: #161616;
+    --clr-primary-light: #1f1f1f;
+    --clr-primary-dark: #0f0f10;
 
-    --clr-green: #34b8a8;
-    --clr-orange: #e08c2b;
-    --clr-grey: #505050;
+    --clr-green: #4ade80;
+    --clr-orange: #22c55e;
+    --clr-grey: #262626;
 
-    --font-family: "Roboto", sans-serif;
+    --clr-text: #e5e5e5;
+    --clr-text-bright: #f5f5f5;
+    --clr-text-muted: #a3a3a3;
+    --clr-border: #262626;
+
+    --clr-accent-text: #0f0f10;
+
+    --font-family: "Inter", "Roboto", sans-serif;
 }
 
 * {
@@ -43,68 +50,45 @@ html {
 body {
     min-height: 100vh;
     font-family: var(--font-family);
-    background-color: var(--clr-primary-dark);
-    color: #fff;
+    background-color: transparent;
+    color: var(--clr-text);
 }
 
 h3.heading {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-.btn {
-    text-decoration: none;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 700;
-    padding: 1rem;
-    transition: 0.25s;
-    color: rgb(243, 243, 243);
-}
-
-.btn-grey {
-    background-color: var(--clr-grey);
-    border: 2px solid var(--clr-grey);
-}
-.btn-orange {
-    background-color: var(--clr-orange);
-    border: 2px solid var(--clr-orange);
-}
-.btn-green {
-    background-color: var(--clr-green);
-    border: 2px solid var(--clr-green);
-}
-
-.btn-grey:is(:hover, :focus, :focus-within) {
-    background-color: #000;
-    color: var(--clr-grey);
-}
-.btn-orange:is(:hover, :focus, :focus-within) {
-    background-color: #000;
-    color: var(--clr-orange);
-}
-.btn-green:is(:hover, :focus, :focus-within) {
-    background-color: #000;
-    color: var(--clr-green);
-}
-
-.scroller {
-    --size: 10rem;
-    overflow-y: scroll;
-    margin: auto 0;
-    height: calc(100% - 6rem);
-    /* margin-top: calc(var(--size) / 2); */
-}
-
-.scroller::-webkit-scrollbar {
     display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .scroller {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a2a transparent;
+}
+
+.scroller::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scroller::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+}
+
+.scroller::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-green);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

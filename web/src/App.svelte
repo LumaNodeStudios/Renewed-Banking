@@ -5,7 +5,7 @@
     import Popup from "./components/Popup.svelte";
     import Loading from "./components/Loading.svelte";
     import Notification from "./components/Notification.svelte";
-    import { popupDetails, loading, notify } from "./store/stores";
+    import { popupDetails, loading, notify, theme } from "./store/stores";
 
     debugData([
         {
@@ -13,6 +13,15 @@
             data: true,
         },
     ]);
+
+    $: {
+        if ($theme) {
+            const root = document.documentElement;
+            root.style.setProperty('--clr-green', $theme.primary);
+            root.style.setProperty('--clr-orange', $theme.primaryDark);
+            root.style.setProperty('--clr-accent-text', $theme.primaryText);
+        }
+    }
 </script>
 
 <svelte:head>

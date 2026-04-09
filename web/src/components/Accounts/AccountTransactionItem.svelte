@@ -4,7 +4,7 @@
     import { translations } from "../../store/stores";
     function getTimeElapsed(seconds: number): string {
         let retData: string;
-        const timestamp = Math.floor(Date.now() / 1000)-seconds;
+        const timestamp = Math.floor(Date.now() / 1000) - seconds;
         const minutes = Math.floor(timestamp / 60);
         const hours = Math.floor(minutes / 60);
         const days = Math.floor(hours / 24);
@@ -33,113 +33,155 @@
     }
 </script>
 
-<section class="transaction">
-    <h5>
-        <span class="title-container" class:withdrawTitle={transaction.trans_type === "withdraw"}>
-            {transaction.title}
-            <p>[{transaction.trans_type.toUpperCase()}]</p>
-        </span>
-        <span class="trans_id" class:withdrawId={transaction.trans_type === "withdraw"}>{transaction.trans_id}</span>
-    </h5>
-    <h4>
-        <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-            <span class:withdraw={transaction.trans_type === "withdraw"}>
-                <i class="fa-solid fa-money-bill"></i>
-                {formatMoney(transaction.amount)}
-            </span>
-        </div>
-        <span> {transaction.receiver} </span>
-        <span>{getTimeElapsed(transaction.time)} <br /> {transaction.issuer}</span>
-    </h4>
+<section
+    class="transaction-row"
+    class:is-withdraw={transaction.trans_type === "withdraw"}
+    class:is-deposit={transaction.trans_type === "deposit"}
+    class:is-transfer={transaction.trans_type === "transfer"}
+>
+    <div class="transaction-icon">
+        {#if transaction.trans_type === "withdraw"}
+            <i class="fa-solid fa-minus"></i>
+        {:else if transaction.trans_type === "deposit"}
+            <i class="fa-solid fa-plus"></i>
+        {:else}
+            <i class="fa-solid fa-paper-plane"></i>
+        {/if}
+    </div>
 
-    <h6>
-        {$translations.message} <br />
-        {transaction.message}
-    </h6>
+    <div class="transaction-details">
+        <div class="detail-main">
+            <strong>{transaction.title}</strong>
+            <span>{transaction.receiver} • {transaction.trans_id}</span>
+        </div>
+        <div class="detail-meta">
+            <span>{getTimeElapsed(transaction.time)}</span>
+            <span>{transaction.issuer}</span>
+        </div>
+    </div>
+
+    <div class="transaction-amount">
+        <strong class:amount-withdraw={transaction.trans_type === "withdraw"}>
+            {transaction.trans_type === "withdraw" ? "-" : "+"}{formatMoney(
+                transaction.amount,
+            )}
+        </strong>
+        <span class="message-preview">{transaction.message}</span>
+    </div>
 </section>
 
 <style>
-    .transaction {
-        background-color: var(--clr-primary-light);
-        padding: 1.5rem;
-        border-radius: 6px;
-        font-size: 1.5rem;
-        font-weight: 300;
-        box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-        -webkit-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-        -moz-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-    }
-
-    .transaction:not(:last-child) {
-        margin-bottom: 1.5rem;
-    }
-    .title-container {
+    .transaction-row {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1.5rem;
+        background: var(--clr-primary-dark);
+        border: 1px solid var(--clr-border);
+        padding: 1.25rem 1.5rem;
+        border-radius: 16px;
+        transition: all 0.2s ease;
+        position: relative;
     }
 
-    .title-container > p {
-        background-color: var(--clr-green);
-        color: #0f745e;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
+    .transaction-row:hover {
+        background: var(--clr-primary-light);
+        border-color: var(--clr-green);
     }
-    .title-container.withdrawTitle > p {
-        background-color: var(--clr-orange);
-        color: #754a1a;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-    }
-    .trans_id {
-        color: #ced3eb;
-        background-color: var(--clr-green);
-        color: #0f745e;
-        padding: 0.3rem 0.8rem;
-        border-radius: 6px;
+
+    .transaction-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(74, 222, 128, 0.1);
+        color: var(--clr-green);
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
     }
 
-    .trans_id.withdrawId {
-        background-color: var(--clr-orange);
-        color: #754a1a;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
+    .is-withdraw .transaction-icon {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
     }
 
-    .transaction h5 {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
-        border-bottom: 3px solid #fff;
+    .is-deposit .transaction-icon {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
     }
 
-    .transaction h4 {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-    }
-    .transaction h4 span:first-child {
-        font-size: 1.4rem;
+    .is-transfer .transaction-icon {
+        background: rgba(74, 222, 128, 0.1);
         color: var(--clr-green);
     }
-    .transaction h4 span.withdraw {
-        color: var(--clr-orange);
+
+    .transaction-details {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
     }
-    .transaction h4 span:nth-child(2) {
-        margin-top: 0.5rem;
-        margin-left: 0.2rem;
-        color: #ced3eb;
+
+    .detail-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
     }
-    .transaction h6 {
-        color: #B6BACF;
-        margin: 1rem 0 1.5rem;
-}
-    .transaction h6 span {
-        margin-top: 0.5rem;
+
+    .detail-main strong {
+        font-size: 1rem;
+        color: var(--clr-text-bright);
+        font-weight: 600;
+    }
+
+    .detail-main span {
+        font-size: 0.8rem;
+        color: var(--clr-text-muted);
+    }
+
+    .detail-meta {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .detail-meta span:first-child {
+        font-size: 0.85rem;
+        color: var(--clr-text-bright);
+    }
+
+    .detail-meta span:last-child {
+        font-size: 0.75rem;
+        color: var(--clr-text-muted);
+    }
+
+    .transaction-amount {
+        width: 151px;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .transaction-amount strong {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--clr-green);
+    }
+
+    .transaction-amount strong.amount-withdraw {
+        color: #ef4444;
+    }
+
+    .message-preview {
+        font-size: 0.75rem;
+        color: var(--clr-text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
     }
 </style>

@@ -10,7 +10,10 @@
     popupDetails,
     atm,
     translations,
-    currency
+    currency,
+    theme,
+    bankName,
+    bankSubtitle
   } from '../store/stores';
   import { useNuiEvent } from '../utils/useNuiEvent';
   let isVisible: boolean;
@@ -25,10 +28,16 @@
     visibility.set(data.status);
     loading.set(data.loading);
     atm.set(data.atm);
+    if (data.theme) theme.set(data.theme);
+    if (data.bankName) bankName.set(data.bankName);
+    if (data.bankSubtitle) bankSubtitle.set(data.bankSubtitle);
   })
 
   useNuiEvent<any>('setLoading', data => {
     loading.set(data.status);
+    if (data.theme) theme.set(data.theme);
+    if (data.bankName) bankName.set(data.bankName);
+    if (data.bankSubtitle) bankSubtitle.set(data.bankSubtitle);
   })
 
   useNuiEvent<any>('notify', data => {

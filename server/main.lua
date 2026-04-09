@@ -607,7 +607,7 @@ local function CreateJobAccount(job, initialBalance)
         creator = nil
     }
 
-    local insertId = MySQL.insert.await("INSERT INTO bank_accounts_new (id, amount, transactions, auth, isFrozen, creator) VALUES (?, ?, ?, ?, ?, NULL)", {
+    local success, errorMsg = MySQL.insert("INSERT INTO bank_accounts_new (id, amount, transactions, auth, isFrozen, creator) VALUES (?, ?, ?, ?, ?, NULL)", {
         job.name,
         cachedAccounts[job.name].amount,
         json.encode(cachedAccounts[job.name].transactions), -- Convert transactions to JSON
@@ -616,9 +616,9 @@ local function CreateJobAccount(job, initialBalance)
     })
 
     -- Handle potential database errors
-    if not insertId then
+    if not success then
 	cachedAccounts[job.name] = nil
-        error(("^5[%s]^7-^1[ERROR]^7 %s"):format(currentResourceName, "Database error"))
+        error(("^5[%s]^7-^1[ERROR]^7 %s"):format(currentResourceName, "Database error: " .. tostring(errorMsg)))
     end
 
     return cachedAccounts[job.name]

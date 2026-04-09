@@ -12,6 +12,15 @@ export let popupDetails = writable({
     actionType: "",
 });
 
+export const theme = writable({
+    primary: '#6fd2f3',
+    primaryDark: '#4fb9dd',
+    primaryText: '#0f0f10'
+});
+
+export const bankName = writable('RENEWED');
+export const bankSubtitle = writable('Financial Services');
+
 export const accounts = writable<any>([
 
 ]);

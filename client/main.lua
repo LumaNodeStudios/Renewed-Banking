@@ -12,7 +12,13 @@ local function nuiHandler(val)
 end
 
 local function openBankUI(isAtm)
-    SendNUIMessage({action = 'setLoading', status = true})
+    SendNUIMessage({
+        action = 'setLoading', 
+        status = true, 
+        theme = Config.theme,
+        bankName = Config.bankName,
+        bankSubtitle = Config.bankSubtitle
+    })
     nuiHandler(true)
     lib.callback('renewed-banking:server:initalizeBanking', false, function(accounts)
         if not accounts then
@@ -26,7 +32,10 @@ local function openBankUI(isAtm)
                 status = isVisible,
                 accounts = accounts,
                 loading = false,
-                atm = isAtm
+                atm = isAtm,
+                theme = Config.theme,
+                bankName = Config.bankName,
+                bankSubtitle = Config.bankSubtitle
             })
         end)
     end)

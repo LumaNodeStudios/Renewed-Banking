@@ -90,5 +90,16 @@
     "trans_not_found": "No transactions found",
     "export_data": "Export Transaction Data",
     "account_search": "Account Search...",
-    "account_not_found": "No accounts found"
+    "account_not_found": "No accounts found",
+    "overview_title": "Account Overview",
+    "overview_subtitle": "Manage your personal and business accounts",
+    "cash_on_hand": "Cash on Hand",
+    "transaction_history": "Transaction History",
+    "comment_placeholder": "Transaction note...",
+    "transfer_placeholder": "State ID / Account #",
+    "account_holder": "Account Holder",
+    "amount_placeholder": "0.00",
+    "confirm_but": "Confirm Transaction",
+    "personal_account": "Personal Account",
+    "business_account": "Business Account"
 }

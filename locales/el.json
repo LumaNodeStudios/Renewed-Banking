@@ -90,5 +90,16 @@
     "trans_not_found": "Δεν βρέθηκαν συναλλαγές",
     "export_data": "Εξαγωγή δεδομένων συναλλαγών",
     "account_search": "Αναζήτηση λογαριασμού...",
-    "account_not_found": "Δεν βρέθηκαν λογαριασμοί"
+    "account_not_found": "Δεν βρέθηκαν λογαριασμοί",
+    "overview_title": "Account Overview",
+    "overview_subtitle": "Manage your personal and business accounts",
+    "cash_on_hand": "Cash on Hand",
+    "transaction_history": "Transaction History",
+    "comment_placeholder": "Transaction note...",
+    "transfer_placeholder": "State ID / Account #",
+    "account_holder": "Account Holder",
+    "amount_placeholder": "0.00",
+    "confirm_but": "Confirm Transaction",
+    "personal_account": "Personal Account",
+    "business_account": "Business Account"
 }

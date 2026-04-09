@@ -11,18 +11,28 @@
 
 <style>
     .notificaion-container {
-        width: 15%;
+        width: auto;
+        max-width: 400px;
         box-sizing: border-box;
-        padding: 10px 8px;
-        margin: 5px 0px;
         position: absolute;
-        left: 5%;
-        top: 4%;
+        right: 2rem;
+        top: 2rem;
+        z-index: 10000;
     }
     .notificaion-content {
-        background-color: var(--clr-primary);
-        padding: 2rem;
-        border-radius: 1rem;
-        font-size: 1em;
+        background-color: var(--clr-primary-dark);
+        color: var(--clr-text-bright);
+        padding: 1.25rem 1.75rem;
+        border-radius: 6px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        animation: slideIn 0.3s ease-out forwards;
     }
+    .notificaion-content i {
+        font-size: 1.25rem;
+        color: var(--clr-green);
+    }
+
 </style>

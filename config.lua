@@ -5,6 +5,13 @@ Config = {
     renewedMultiJob = false, -- QBCORE ONLY! https://github.com/Renewed-Scripts/qb-phone  
     progressbar = 'circle', -- circle or rectangle (Anything other than circle will default to rectangle)
     currency = 'USD', -- USD, EUR, GBP ect.....
+    bankName = 'Los Santos',
+    bankSubtitle = 'Banking',
+    theme = {
+        primary = '#6fd2f3',    -- Light Blue accent color
+        primaryDark = '#4fb9dd', -- Darker variant for hovers
+        primaryText = '#0f0f10'  -- Dark text for better visibility on light blue
+    },
     atms = {
         `prop_atm_01`,
         `prop_atm_02`,
